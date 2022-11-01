@@ -1,0 +1,28 @@
+img {
+  width: 100px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-position: center center;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.container {
+  padding: 1.5rem;
+}
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  width: 700px;
+  padding-left: 20px;
+  font-size: 16px/25px;
+  font: 400 16px/25px Roboto, "Helvetica Neue", sans-serif;
+}
+.text-align{
+  padding-left: 20px;
+}
+mat-icon{
+  cursor: pointer;
+}

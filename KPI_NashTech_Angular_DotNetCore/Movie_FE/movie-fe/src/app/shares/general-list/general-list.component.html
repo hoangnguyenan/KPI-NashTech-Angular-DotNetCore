@@ -1,0 +1,25 @@
+
+<div *ngIf="!list">
+  <span #loading>
+      <ng-content select="[loading]"></ng-content>
+  </span>
+  <span *ngIf="!loading.innerHTML.trim()">
+    <img
+      src="https://img.pikbest.com/58pic/35/39/61/62K58PICb88i68HEwVnm5_PIC2018.gif!w340"
+    />
+  </span>
+</div>
+
+<div *ngIf="list?.length === 0" class = "no-record">
+  <span #empty>
+    <ng-content select="[empty]"></ng-content>
+  </span>
+  <span *ngIf="!empty.innerHTML.trim()">
+      <h2>There are currently no movies available. ^^</h2>
+  </span>
+</div>
+
+<ng-container *ngIf="list && list.length > 0 ">
+   <ng-content select="[content]">
+   </ng-content>
+</ng-container>

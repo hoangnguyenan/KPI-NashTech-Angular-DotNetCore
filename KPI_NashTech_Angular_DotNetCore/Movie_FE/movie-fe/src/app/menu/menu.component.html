@@ -1,0 +1,76 @@
+<mat-toolbar>
+  <a routerLink="/">
+    <img
+      src="https://www.cgv.vn/skin/frontend/cgv/default/images/cgvlogo-small.png"
+      alt="CGV Cinemas"
+      class="small"
+    />
+  </a>
+  <div>
+    <a mat-button routerLink="movies/filter"
+      ><mat-icon>search</mat-icon> Search CGV</a
+    >
+  </div>
+
+  <div>
+    <a mat-button routerLink="actors"> Actors</a>
+  </div>
+  <div>
+    <a mat-button routerLink="movietheaters"> Movie Theater</a>
+  </div> 
+
+  <div>
+    <app-authorize-view [role]="'admin'" >
+      <ng-container authorized>   
+        <div>
+          <a mat-button routerLink="categories"> Category</a>
+        </div>    
+        <div>
+          <a mat-button routerLink="users">List User</a>
+        </div>
+        <div>
+          <button mat-button [matMenuTriggerFor]="menu">Add New</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="movies/create">Movie</button>
+            <button mat-menu-item routerLink="actors/create">Actor</button>
+            <button mat-menu-item routerLink="categories/create">Category</button>
+            <button mat-menu-item routerLink="movietheaters/create">Cinema</button>
+          </mat-menu>
+        </div>
+      </ng-container>       
+  </app-authorize-view>
+    <app-authorize-view [role]="'manager'" >
+      <ng-container authorized>   
+        <div>
+          <a mat-button routerLink="categories"> Category</a>
+        </div>    
+        <div>
+          <a mat-button routerLink="users">List User</a>
+        </div>
+        <div>
+          <button mat-button [matMenuTriggerFor]="menu">Add New</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="movies/create">Movie</button>
+            <button mat-menu-item routerLink="actors/create">Actor</button>
+            <button mat-menu-item routerLink="categories/create">Category</button>
+            <button mat-menu-item routerLink="movietheaters/create">Cinema</button>
+          </mat-menu>
+        </div>
+      </ng-container>       
+  </app-authorize-view>
+  </div> 
+
+<div class="space"></div>
+
+<app-authorize-view>
+  <ng-container authorized>
+    <span>Hi, {{securityService.getFieldFromJWT('username')}} </span>
+    <a mat-button (click)="securityService.logout()" >Logout</a>
+  </ng-container> 
+  <ng-container notAuthorized>
+    <a mat-button routerLink="login">Login</a>
+    <a mat-button routerLink="register">Register</a>
+  </ng-container>
+</app-authorize-view>
+  
+</mat-toolbar>

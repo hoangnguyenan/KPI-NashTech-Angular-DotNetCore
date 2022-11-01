@@ -1,0 +1,109 @@
+<div class="container">
+  <h2>Movie Theaters</h2>
+  <app-authorize-view [role]="'admin'">
+    <ng-container authorized>
+      <button mat-flat-button color="primary" routerLink="/movietheaters/create">Create</button>
+    </ng-container>
+  </app-authorize-view>
+  <app-authorize-view [role]="'manager'">
+    <ng-container authorized>
+      <button mat-flat-button color="primary" routerLink="/movietheaters/create">Create</button>
+    </ng-container>
+  </app-authorize-view>
+
+  <app-general-list [list]="movieTheaters">
+      <ng-container content>
+        <table mat-table [dataSource]="movieTheaters" matSort class="mat-elevation-z8 table-index">
+          <ng-container matColumnDef="No.">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element = index">{{element + 1}}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+            <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <app-authorize-view [role]="'admin'">
+                <ng-container authorized>
+                  Actions
+                </ng-container>
+              </app-authorize-view>
+              <app-authorize-view [role]="'manager'">
+                <ng-container authorized>
+                  Actions
+                </ng-container>
+              </app-authorize-view>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <app-authorize-view [role]="'admin'">
+                <ng-container authorized>
+                  <div style="display: inline;">
+                    <mat-icon 
+                      routerLink="/movietheaters/edit/{{ element.id }}"
+                      mat-flat-button
+                      color="primary"
+                    >settings</mat-icon>
+                  </div>    
+                  <div style="display: inline; margin-left: 10px;">
+                    <mat-icon
+                      mat-flat-button
+                      color="warn"
+                      [swal]="{
+                        title: 'Confirmation',
+                        text: 'Are you want to delete the record ?',
+                        showCancelButton: true
+                      }"
+                      (confirm)="delete(element.id)"
+                    >delete_forever</mat-icon>
+                  </div>    
+                </ng-container>
+              </app-authorize-view>     
+              <app-authorize-view [role]="'manager'">
+                <ng-container authorized>
+                  <div style="display: inline;">
+                    <mat-icon 
+                      routerLink="/movietheaters/edit/{{ element.id }}"
+                      mat-flat-button
+                      color="primary"
+                    >settings</mat-icon>
+                  </div>    
+                  <div style="display: inline; margin-left: 10px;">
+                    <mat-icon
+                      mat-flat-button
+                      color="warn"
+                      [swal]="{
+                        title: 'Confirmation',
+                        text: 'Are you want to delete the record ?',
+                        showCancelButton: true
+                      }"
+                      (confirm)="delete(element.id)"
+                    >delete_forever</mat-icon>
+                  </div>    
+                </ng-container>
+              </app-authorize-view>     
+                       
+            </td>
+            <tr mat-header-row *matHeaderRowDef="columnToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnToDisplay"></tr>
+          </ng-container>              
+          
+        </table>
+        <div>
+        <mat-paginator 
+          [pageSizeOptions]="[5,10,20,50]" 
+          showFirstLastButtons 
+          [length]="totalAmountOfRecords"
+          [pageSize]="pageSize"
+          (page)="updatePagination($event)"
+          class="mat-elevation-z8"
+        ></mat-paginator>
+      </div>
+    
+      </ng-container>
+    </app-general-list>
+  </div>

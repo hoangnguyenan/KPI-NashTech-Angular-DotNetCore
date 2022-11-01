@@ -1,0 +1,22 @@
+<div class="container">
+    <h2 style="margin-top: 15px;">Featured today</h2>
+    <app-movies-list (onDelete)="onDelete()" [movies]="inCinemas"></app-movies-list>
+    <mat-paginator
+        [length]="totalAmountOfRecordsInCinema"
+        [pageSize]="recordsPerPage"
+        [pageSizeOptions]="[6, 12, 24, 48]"
+        (page)="paginatorUpdate($event)"
+    >
+    </mat-paginator>
+</div>
+<div class="container"> 
+    <h2>Comming soon</h2>
+    <app-movies-list (onDelete)="onDelete()" [movies]="upComingReleases"></app-movies-list>
+    <mat-paginator 
+        [length]="totalAmountOfRecordsUpComing"
+        [pageSize]="recordsPerPage"
+        [pageSizeOptions]="[6, 12, 24, 48]"
+        (page)="paginatorUpdate($event)"
+    >
+    </mat-paginator>
+</div>

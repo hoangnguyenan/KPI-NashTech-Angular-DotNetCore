@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Create Movie</h2>
+    <app-form-movie
+    [nonSelectedCategories]= "nonSelectedCategories"
+    [nonSelectedMovieTheaters] = "nonSelectedMovieTheaters"
+    (onSaveChanges)="saveChanges($event)"></app-form-movie>
+
+    <mat-spinner *ngIf="!nonSelectedCategories"></mat-spinner>
+ </div>

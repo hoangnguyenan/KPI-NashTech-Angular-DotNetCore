@@ -1,0 +1,29 @@
+
+<div class="container">    
+    <h1>{{action}}</h1>
+    <div class="mat-card">        
+        <div class="body-card">
+            <form (submit)="login(form.value)" [formGroup]="form" >  
+                <mat-form-field appearance="outline">
+                    <mat-label>User name</mat-label>
+                    <input formControlName="username" matInput />
+                    <mat-error>{{getNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" formControlName="password" matInput />
+                    <mat-error>{{getPasswordErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <div>
+                    <button mat-flat-button color="primary" [disabled]="form.invalid">
+                        {{action}}
+                    </button>
+                    <a mat-stroked-button routerLink="/">
+                        Cancel
+                    </a>
+                </div>
+            </form>   
+        </div>
+    </div>
+</div>
+<app-show-errors [errors]="errors"></app-show-errors>

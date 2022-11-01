@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>Search CGV</h2>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="categoryId">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <mat-checkbox formControlName="inCinemas">Now Showing</mat-checkbox>
+    </div>
+    <div>
+      <mat-checkbox formControlName="upComingReleases">Coming Soon</mat-checkbox>
+    </div>
+    <div>
+        <button mat-flat-button (click)="clearForm()" color="warn">Clear</button>
+    </div>
+  </form>
+</div>
+
+<div class="container-filter">
+  <app-movies-list (onDelete)="onDelete()" [movies]="movies"></app-movies-list>
+  <mat-paginator
+    [length]="totalAmountOfRecords"
+    [pageSize]="recordsPerPage"
+    [pageSizeOptions]="[6, 12, 24, 48]"
+    (page)="paginatorUpdate($event)"
+  >
+  </mat-paginator>
+</div>
+

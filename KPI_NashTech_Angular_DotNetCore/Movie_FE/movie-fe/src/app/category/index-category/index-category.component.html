@@ -1,0 +1,89 @@
+<div class="container">
+    <h2>CGV Category</h2>
+    <button mat-flat-button color="primary" routerLink="/categories/create">Create</button>
+
+    <app-general-list [list]="category">
+        <ng-container content>
+            <table mat-table [dataSource]="category" class="mat-elevation-z8 table-index">
+                <ng-container matColumnDef="No.">
+                    <th mat-header-cell *matHeaderCellDef>No.</th>
+                    <td mat-cell *matCellDef="let element = index">{{element + 1}}</td>
+                </ng-container>
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cell *matCellDef="let element">{{element.name}}</td>      
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <app-authorize-view [role]="'admin'">
+                            <ng-container authorized>
+                                Actions
+                            </ng-container>
+                          </app-authorize-view>
+                          <app-authorize-view [role]="'manager'">
+                            <ng-container authorized>
+                              Actions
+                            </ng-container>
+                          </app-authorize-view>
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <app-authorize-view [role]="'admin'">
+                            <ng-container authorized>
+                              <div style="display: inline;">
+                                <mat-icon 
+                                    routerLink="/categories/edit/{{element.id}}"
+                                    mat-flat-button 
+                                    color="primary"
+                                >settings</mat-icon>
+                              </div>    
+                              <div style="display: inline; margin-left: 10px;">
+                                <mat-icon
+                                    [swal]="{
+                                        title: 'Confirmation',
+                                        text: 'Are you want to delete the record ?',
+                                        showCancelButton: true
+                                    }"
+                                    (confirm)="delete(element.id)"
+                                    color="warn"
+                                >delete_forever</mat-icon>
+                              </div>    
+                            </ng-container>
+                        </app-authorize-view>     
+                        <app-authorize-view [role]="'manager'">
+                            <ng-container authorized>
+                              <div style="display: inline;">
+                                <mat-icon 
+                                    routerLink="/categories/edit/{{element.id}}"
+                                    mat-flat-button 
+                                    color="primary"
+                                >settings</mat-icon>
+                              </div>    
+                              <div style="display: inline; margin-left: 10px;">
+                                <mat-icon
+                                    [swal]="{
+                                        title: 'Confirmation',
+                                        text: 'Are you want to delete the record ?',
+                                        showCancelButton: true
+                                    }"
+                                    (confirm)="delete(element.id)"
+                                    color="warn"
+                                >delete_forever</mat-icon>
+                              </div>    
+                            </ng-container>
+                        </app-authorize-view>     
+                    </td>    
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnToDisplay"></tr>
+            </table>
+            <mat-paginator 
+            [pageSizeOptions]="[5,10,20,50]" 
+            showFirstLastButtons 
+            [length]="totalAmountOfRecords"
+            [pageSize]="pageSize"
+            (page)="updatePagination($event)"
+            class="mat-elevation-z8"
+        ></mat-paginator>
+        </ng-container>
+    </app-general-list>
+</div>

@@ -1,0 +1,20 @@
+mat-toolbar{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #121212;
+}
+div{
+    color: #ffffff;
+}
+span{
+    font-size: 15px;
+}
+app-authorize-view{
+   display: flex; 
+   color: #ffffff;
+}
+.space{
+    flex: 1 1 auto;
+}

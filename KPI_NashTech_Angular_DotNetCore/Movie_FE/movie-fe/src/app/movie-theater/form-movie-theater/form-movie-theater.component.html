@@ -1,0 +1,25 @@
+<form (submit)="saveChanges()" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input formControlName="name" matInput />
+    <mat-error>{{getErrorMessageName()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Address</mat-label>
+    <input formControlName="address" matInput />
+    <mat-error>{{getErrorMessageAddress()}}</mat-error>
+  </mat-form-field>
+  <h4>Select location</h4>
+  <div style="position: sticky">
+    <app-map 
+      [initCoordinates]="initCoordinates"
+      (onSelectedLocation)="onSelectedLocation($event)">
+    </app-map>
+  </div>  
+  <div>
+    <button mat-flat-button color="primary" [disabled]="form.invalid">
+      Save
+    </button>
+    <a mat-stroked-button routerLink="/movietheaters">Cancel</a>
+  </div>
+</form>

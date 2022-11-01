@@ -1,0 +1,9 @@
+.container{
+    padding: 1.5rem;
+  }
+mat-icon{
+    cursor: pointer;
+}
+.icon{
+  display: inline;
+}

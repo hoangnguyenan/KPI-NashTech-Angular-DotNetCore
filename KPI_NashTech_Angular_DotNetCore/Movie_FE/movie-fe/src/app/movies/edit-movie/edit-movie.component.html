@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Edit Movie</h2>
+    <app-form-movie 
+        [model] = "model"
+        *ngIf="model"
+        [selectedCategories] = "selectedCategories"
+        [nonSelectedCategories]= "nonSelectedCategories"
+        [selectedMovieTheaters]= "selectedMovieTheaters"
+        [nonSelectedMovieTheaters]= "nonSelectedMovieTheaters"
+        [selectedActors]= "selectedActors"
+        (onSaveChanges)="saveChanges($event)">
+    </app-form-movie>
+</div>

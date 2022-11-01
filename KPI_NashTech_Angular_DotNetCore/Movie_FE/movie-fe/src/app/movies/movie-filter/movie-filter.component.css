@@ -1,0 +1,37 @@
+form{
+    width: 100%;
+}
+form mat-form-field{
+    width: 30%;
+    margin-right: 1rem;
+}
+.container{
+    padding: 1.5rem;
+}
+.mat-flat-button{
+    margin-top: 15px;
+}
+.container-filter{
+    padding-top: 1.5rem;
+    padding-left: 15px;
+    background-color: #1f1f1f;
+}
+
+.mat-paginator{
+    background-color: #1f1f1f;
+    color: gray;
+    /* display: flex;
+    justify-content: center; */
+}
+::ng-deep .mat-paginator .mat-icon-button.mat-button-disabled.mat-button-disabled{
+    color: gray;
+ }
+ ::ng-deep .mat-paginator .mat-select-arrow {
+    color: gray;
+ }
+ ::ng-deep .mat-paginator .mat-select-value {
+    color: gray;
+}
+::ng-deep .mat-paginator .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: gray;
+}
